@@ -1,7 +1,42 @@
-
 services:
-  redis:
-    image: redis:7.0.5-alpine
-    hostname: redis
-    container_name: redis
+  db:
+    image: postgres:14.6-alpine
+    container_name: db
+    networks: 
+      - net
+    environment:
+      - POSTGRES_DB=test_db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - .:/docker-entrypoint-initdb.d
     
+      
+
+  bot:
+    build: ./bot
+    container_name: bot
+    networks: 
+      - net
+    restart: unless-stopped
+    
+
+  api:
+    build: 
+      context: ./api
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    networks: 
+      - net
+    ports:
+      - 8001:8001
+    container_name: api
+    depends_on:
+      - db
+
+
+
+
+networks:
+  net:
+    driver: bridge
