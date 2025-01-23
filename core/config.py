@@ -8,7 +8,6 @@ class Settings(BaseSettings):
     db_url: str = 'postgresql+asyncpg://postgres:SA-testing-1@localhost/test_db' #f'sqlite+aiosqlite:///{BASE_DIR}/db.sqlite3'
     echo: bool = True
     url_get_product_by_articul:str = 'https://card.wb.ru/cards/v1/detail?appType=1&curr=rub&dest=-1257786&spp=30&nm='
-    CELERY_BROKER_URL:str = 'redis://127.0.0.1:6379/0'
-    CELERY_RESULT_BACKEND: str = 'redis://127.0.0.1:6379/0'
+    timeout:int = 30
 
 settings = Settings()

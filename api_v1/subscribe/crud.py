@@ -19,7 +19,7 @@ async def start_scheduler(artikul:str, session:AsyncSession, url:str)->None:
     scheduler = AsyncIOScheduler()
     scheduler.add_job(
         func=create_or_update_product,
-        trigger=IntervalTrigger(seconds=10),
+        trigger=IntervalTrigger(minutes=settings.timeout),
         id=artikul,
         replace_existing=True,
         args=(
