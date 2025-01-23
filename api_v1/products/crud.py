@@ -23,6 +23,7 @@ async def create_or_update_product(
         stmt = update(Product).where(Product.articul==articul.artikul).values(**data)
         await session.execute(stmt)
         await session.commit()
+        print(articul.artikul)
         return await session.get(Product, id)
     
     prod = Product(**data)
