@@ -1,0 +1,7 @@
+
+services:
+  redis:
+    image: redis:7.0.5-alpine
+    hostname: redis
+    container_name: redis
+    
