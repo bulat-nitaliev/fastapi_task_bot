@@ -1,4 +1,4 @@
-FROM python:3.9-slim
+FROM python:3.9-alpine3.16
 WORKDIR /bot
 COPY requirements.txt requirements.txt
 

@@ -3,7 +3,7 @@ import os
 
 
 async def get_product(data):
-        url = 'http://localhost:8000/api/v1/product/'
+        url = 'http://api:8000/api/v1/product/'
         headers = {'Content-Type': 'application/json', 'accept': 'application/json'}
         async with aiohttp.ClientSession() as session:
             async with session.post(url=url,headers=headers,  json=data) as response:

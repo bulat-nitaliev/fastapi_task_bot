@@ -8,8 +8,10 @@ services:
       - POSTGRES_DB=test_db
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
+      
     volumes:
       - .:/docker-entrypoint-initdb.d
+      - data_db:/var/lib/postgresql/data
     
       
 
@@ -19,6 +21,8 @@ services:
     networks: 
       - net
     restart: unless-stopped
+    volumes:
+      - .data:/app  
     
 
   api:
@@ -33,9 +37,12 @@ services:
     container_name: api
     depends_on:
       - db
+    volumes:
+      - .data:/app  
 
 
-
+volumes:
+  data_db:
 
 networks:
   net:
