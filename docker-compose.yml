@@ -29,7 +29,7 @@ services:
     networks: 
       - net
     ports:
-      - 8001:8001
+      - 8000:8000
     container_name: api
     depends_on:
       - db
